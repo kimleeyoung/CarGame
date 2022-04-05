@@ -1,0 +1,9 @@
+c:\users\eghis\onedrive\documents\visual studio 2015\Projects\CarGame\CarGame\bin\Debug\CarGame.exe.config
+c:\users\eghis\onedrive\documents\visual studio 2015\Projects\CarGame\CarGame\bin\Debug\CarGame.exe
+c:\users\eghis\onedrive\documents\visual studio 2015\Projects\CarGame\CarGame\bin\Debug\CarGame.pdb
+c:\users\eghis\onedrive\documents\visual studio 2015\Projects\CarGame\CarGame\obj\Debug\CarGame.csprojResolveAssemblyReference.cache
+c:\users\eghis\onedrive\documents\visual studio 2015\Projects\CarGame\CarGame\obj\Debug\CarGame.Form1.resources
+c:\users\eghis\onedrive\documents\visual studio 2015\Projects\CarGame\CarGame\obj\Debug\CarGame.Properties.Resources.resources
+c:\users\eghis\onedrive\documents\visual studio 2015\Projects\CarGame\CarGame\obj\Debug\CarGame.csproj.GenerateResource.Cache
+c:\users\eghis\onedrive\documents\visual studio 2015\Projects\CarGame\CarGame\obj\Debug\CarGame.exe
+c:\users\eghis\onedrive\documents\visual studio 2015\Projects\CarGame\CarGame\obj\Debug\CarGame.pdb
