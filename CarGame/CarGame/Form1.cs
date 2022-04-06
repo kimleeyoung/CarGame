@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +13,7 @@ namespace CarGame
     public partial class Form1 : Form
     {
         int _score = 0;
+        int _speed = 1;
         bool reButton = true;
 
         public Form1()
@@ -23,17 +24,23 @@ namespace CarGame
             tmrMain.Tick += TmrMain_Tick;
             btnStart.Click += BtnStart_Click;
             tmrMove.Tick += TmrMove_Tick;
-            playTimer.Tick += PlayTimer_Tick;
-        }
-
-        private void PlayTimer_Tick(object sender, EventArgs e)
-        {
-
         }
 
         private void TmrMove_Tick(object sender, EventArgs e)
         {
             MoveObstacle();
+
+            bool isCrush = CheckCrush();
+
+            if (isCrush)
+            {
+                GameOverLabel();
+                tmrMain.Stop();
+                tmrMove.Stop();
+
+                btnStart.Text = "다시시작";
+            }
+
         }
 
         private void TmrMain_Tick(object sender, EventArgs e)
@@ -43,16 +50,10 @@ namespace CarGame
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
-            Timer timer = new Timer();
-            lblTime.Text = "00:00:00";
-            timer.Tick += new EventHandler(PlayTimer_Tick);
-            timer.Start();
-
-
             if (reButton)
             {
-                Button clickedButton = (Button)sender;
-                clickedButton.Text = "게임중지";
+
+                btnStart.Text = "게임중지";
 
                 tmrMain.Start();
                 tmrMove.Start();
@@ -61,26 +62,31 @@ namespace CarGame
             }
             else
             {
-                Button clickedButton = (Button)sender;
-                clickedButton.Text = "게임시작";
-
-                tmrMain.Stop();
-                tmrMove.Stop();
-                
-                reButton = true;
+                GameStop(sender);
             }
-            
+
         }
-        
+
+        private void GameStop(object sender)
+        {
+
+            btnStart.Text = "게임시작";
+
+            tmrMain.Stop();
+            tmrMove.Stop();
+
+            reButton = true;
+        }
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Left)
             {
-                picCar.Left -= 4;
+                picCar.Left -= 5;
             }
-            else if(e.KeyCode == Keys.Right)
+            else if (e.KeyCode == Keys.Right)
             {
-                picCar.Left += 4;
+                picCar.Left += 5;
             }
         }
 
@@ -90,17 +96,18 @@ namespace CarGame
             box.Size = new Size(60, 60);
             box.Tag = 0;
 
-            int max = pnlRoad.Width - box.Height; 
+            int max = pnlRoad.Width - box.Height;
             Random random = new Random();
             box.Left = random.Next(1, max);
-            box.BackColor = Color.Red;
+            box.BackColor = Color.Yellow;
             pnlRoad.Controls.Add(box);
-
         }
+
         private void MoveObstacle()
         {
             foreach (Control item in pnlRoad.Controls)
             {
+
                 bool isGetScore = item.Top >= (picCar.Top + picCar.Height);
                 bool isNowScore = Convert.ToInt32(item.Tag) == 0;
 
@@ -111,14 +118,27 @@ namespace CarGame
                     item.Tag = 1;
                     _score++;
                     lblScore.Text = _score.ToString();
+
+                    SetLevel();
                 }
 
-                if (item.Name == picCar.Name) continue;
-                item.Top += 10;
+                if (item.Name == picCar.Name || item.Name == lblGameOver.Name) continue;
+                item.Top += _speed;
             }
         }
 
-        private void CheckCrush()
+        private void SetLevel()
+        {
+            if (tmrMain.Interval == 500 || Convert.ToInt32(lblScore.Text) == 0 ) return;
+            if(Convert.ToInt32(lblScore.Text) % 3 == 0)
+            {
+                _speed++;
+                tmrMain.Interval -= 500;
+            }
+        }
+
+        //충돌감지(반환값T: 충돌감지, 반환값F: 충돌없음)
+        private bool CheckCrush()
         {
             int carL = picCar.Left;
             int carR = carL + picCar.Width;
@@ -126,7 +146,7 @@ namespace CarGame
             int carT = picCar.Top;
             int carB = carT + picCar.Height;
 
-            foreach(Control item in pnlRoad.Controls)
+            foreach (Control item in pnlRoad.Controls)
             {
                 if (Convert.ToInt32(item.Tag) != 0) continue;
 
@@ -136,18 +156,26 @@ namespace CarGame
                 int obstacleT = item.Top;
                 int obstacleB = obstacleT + item.Height;
 
-                // if(obstacleL >= carL && obstacleL <= carR)
-                // {
-                //     tmrMain.Stop();
-                //     tmrMove.Stop();
-                // }
-                // if(obstacleR >= carL && obstacleR <= carR)
-                // {
-                //     tmrMain.Stop();
-                //     tmrMove.Stop();
-                // }
+                bool isContainL = carL <= obstacleL && obstacleL <= carR;
+                bool isContainR = carL <= obstacleR && obstacleR <= carR;
 
+                bool isContainT = carT <= obstacleT && obstacleT <= carB;
+                bool isContainB = carT <= obstacleB && obstacleB <= carB;
+
+                //충돌을 감지한 경우
+                return (isContainL || isContainR) && (isContainB || isContainT);
             }
+
+            return false;
         }
+
+        public void GameOverLabel()
+        {
+            lblGameOver.Left = pnlRoad.Width / 2 - lblGameOver.Width / 2;
+            lblGameOver.Top = pnlRoad.Height / 2 - lblGameOver.Height / 2;
+
+            lblGameOver.Visible = true;
+        }
+
     }
 }
