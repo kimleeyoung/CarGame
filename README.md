@@ -12,5 +12,6 @@
 
 # 수정3
 - 장애물 사진넣기
-- 
+- postgreSQL 이용해서 DB연결
+- Grid넣어서 user이름, 점수, 시간 보이기
 ![image](https://user-images.githubusercontent.com/65011438/162144737-e10b3a59-7353-42c4-bcd0-febf501f8ce1.png)
