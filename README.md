@@ -8,6 +8,8 @@
 ![image](https://user-images.githubusercontent.com/65011438/161717775-ebc87ae6-4575-4cd6-b1ed-a237bf938e2b.png)
 
 # 수정2
+- 장애물 구현
+- User Score 등록
 
 ![image](https://user-images.githubusercontent.com/65011438/161933006-8b0592ed-faf7-40f7-aeb9-b03e761822c3.png)
 
