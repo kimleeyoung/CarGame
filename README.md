@@ -19,3 +19,8 @@
 - Grid넣어서 user이름, 점수, 시간 보이기
 
 ![image](https://user-images.githubusercontent.com/65011438/162144737-e10b3a59-7353-42c4-bcd0-febf501f8ce1.png)
+
+# 수정4
+- 자동차 선택 폼 추가
+
+![image](https://user-images.githubusercontent.com/65011438/162701350-2b699f18-bbbb-404f-bdf0-7aa5bf205e50.png)
