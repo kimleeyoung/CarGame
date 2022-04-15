@@ -27,6 +27,6 @@
 
 # 수정5
 - 사용자의 데이터를 정리해서 grid로 보여줌
-
+- 버튼을 하나 추가하여 시작과 다시시작을 하나의 버튼에 설정
 
 ![image](https://user-images.githubusercontent.com/65011438/163529924-fec1fc08-bdf3-4480-9c97-19d163574a22.png)
