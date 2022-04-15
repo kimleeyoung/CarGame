@@ -24,3 +24,9 @@
 - 자동차 선택 폼 추가
 
 ![image](https://user-images.githubusercontent.com/65011438/162701350-2b699f18-bbbb-404f-bdf0-7aa5bf205e50.png)
+
+# 수정5
+- 사용자의 데이터를 정리해서 grid로 보여줌
+
+
+![image](https://user-images.githubusercontent.com/65011438/163529924-fec1fc08-bdf3-4480-9c97-19d163574a22.png)
