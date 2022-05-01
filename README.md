@@ -22,6 +22,7 @@
 
 # 수정4
 - 자동차 선택 폼 추가
+- 자동차 선택 시 선택한 자동차로 게임 시작
 
 ![image](https://user-images.githubusercontent.com/65011438/162701350-2b699f18-bbbb-404f-bdf0-7aa5bf205e50.png)
 
